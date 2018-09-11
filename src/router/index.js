@@ -29,6 +29,35 @@ const router = new Router({
       meta: {
         title: '登录'
       }
+    },
+    {
+      path: '/main',
+      component: () => import('../views/Layout'),
+      redirect: '/main/home',
+      children: [
+        {
+          path: 'home',
+          component: home,
+          name: 'home1',
+          meta: {
+            title: '首页'
+          }
+        },
+        // /main/about/998
+        {
+          path: 'about/:id',
+          component: () => import('../components/about'),
+          name: '详情1',
+        },
+        {
+          path: 'login',
+          name: 'login1',
+          component: () => import('../components/login'),
+          meta: {
+            title: '登录'
+          }
+        },
+      ]
     }
   ]
 })
